@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+
+    <!-- Importing Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+
+    <!-- Importing FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Importing Css file -->
+    <link rel="stylesheet" href="/css/todo.css" />
+  </head>
+  <body class="flex j-c a-s">
+
+    <!-- Container -->
+    <div class="container flex f-c j-c a-c">
+      <h1>TODO App</h1>
+
+      <form action="/new-task" method="POST">
+        
+        <div class="innerContainer flex f-c j-sb a-c">
+          <div class="dateAndCateg flex f-c a-s j-se">
+              <div class="date flex j-sb">
+                  <label for="date">Due Date:</label>
+                  <input type="date" id="date" name="date"/>
+              </div>
+              <div class="category flex j-sb">
+                  <label for="category">Category</label>
+                  <select name="category" id="category" name="category">
+                      <option value="">Choose a Category</option>
+                      <option value="Personal">Personal</option>
+                      <option value="Office">Office</option>
+                      <option value="home">Home</option>
+                      <option value="cleaning">Cleaning</option>
+                  </select>
+              </div>
+          </div>
+          <div class="desc">
+              <textarea name="desc" id="" cols="30" rows="2"placeholder="Desc..."></textarea>
+          </div>
+
+          <!-- Button to add List Item -->
+          <button type="submit" name="add" value="add" class="add">Add Task</button> 
+        </div>
+      </form>
+
+      <!-- Button to delete Item -->
+      <button name="delete" value="delete"id="deleteButton">Delete</button>
+      
+
+      <!-- Todo List -->
+      <div class="todoList flex f-c j-c a-c">
+        <% for(let i of todoList) { let j=0; let newIds='descids'+j; %>
+            <div class="li flex a-c j-sb">
+              <div class="left">
+                <input type="checkbox" name="delechack" class="checkedOrNot" onclick="checkedOrNot()" uid = <%= i._id %> >
+                <div class="dynamicDataLeft flex f-c j-sb a-s">
+                    <p class="data"  id=<%= i._id %>  uid = <%= i._id %> class="dispdsc"><%= i.description %></p>
+                    <div class="taskdate">
+                      <i class="fa-solid fa-calendar-days" style="font-size:.6rem;color:gray;"></i>&nbsp;
+                      <span  id=<%= i._id + i.dueDate %> class="taskDate"  ><%= i.date %></span>
+                    </div>
+                </div>
+              </div>
+              <div class="button">
+                  <%= i.category %>
+              </div>
+            </div>
+        <% j++; } %>
+      </div>
+    </div>
+
+    <!-- Importing Jquery cdn for Ajax -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <!-- Importing JavaScript file -->
+    <script src="/js/todoApp.js"></script>
+  </body>
+</html>
