@@ -10,13 +10,6 @@
   3. Description
 
 * To Delete a Task, user have to check the task and click on the delete button.
-  
-## Technologies Used
-* HTML
-* CSS
-* JavaScript
-* ExpressJs
-* MongoDB
 
 ## Tools Used
 <img align="left" src="https://user-images.githubusercontent.com/18380165/224329335-3cdf989b-bdce-41e6-82dc-7d4c50d5f283.png" width="100" height="100">
